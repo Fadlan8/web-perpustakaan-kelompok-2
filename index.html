@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Perpustakaan digital — temukan buku, komik, dan bacaan favoritmu.">
+<title>RuangBaca — Perpustakaan Digital</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="topline"></div>
+<header>
+ <div class="head">
+  <a class="brand" href="#"><div class="logo">📖</div><div><b>RUANGBACA</b><small>Perpustakaan Digital</small></div></a>
+  <form class="search" id="searchForm"><input id="searchInput" type="search" placeholder="🔎  Cari judul buku, penulis..." aria-label="Cari buku"><button aria-label="Cari">⌕</button></form>
+  <div class="actions"><button class="plain" onclick="openLogin()">♙ Login</button><button class="package" onclick="showToast('Fitur paket premium segera hadir!')">🛒 Paket</button></div>
+ </div>
+ <nav class="nav"><a href="#komik">Komik</a><a href="#bisnis">Bisnis dan Ekonomi</a><a href="#pengembangan">Pengembangan Diri</a><a href="#inspirasi">Kisah Inspiratif</a><a href="#gratis">Ebook Gratis</a><a href="#digital">Produk Digital</a><a href="#game">Game</a><a href="#trending">🔥 Trending</a></nav>
+</header>
+<main>
+ <section class="hero">
+  <div><h1>Temukan bacaan favoritmu di RuangBaca</h1><p>Jelajahi ribuan inspirasi, pengetahuan, dan cerita menarik. Semua berawal dari satu halaman.</p><button onclick="document.getElementById('koleksi').scrollIntoView({behavior:'smooth'})">Jelajahi Koleksi →</button><div class="hero-note">📚 Baca kapan saja • Belajar tanpa batas</div></div>
+ </section>
+ <div class="section-head"><div><div class="eyebrow">JELAJAHI KOLEKSI</div><h2>Kategori Buku</h2></div></div>
+ <div class="categories" id="categories">
+  <button class="chip active" data-cat="Semua">Semua</button><button class="chip" data-cat="Komik">Komik</button><button class="chip" data-cat="Bisnis">Bisnis dan Ekonomi</button><button class="chip" data-cat="Pengembangan Diri">Pengembangan Diri</button><button class="chip" data-cat="Romansa">Romansa</button><button class="chip" data-cat="Teknologi">Teknologi</button><button class="chip" data-cat="Pendidikan">Pendidikan</button>
+ </div>
+ <section id="koleksi">
+  <div class="section-head"><div><div class="eyebrow">RILIS TERBARU</div><h2>📘 Buku Pilihan</h2></div><button class="see" onclick="resetFilter()">Lihat semua →</button></div>
+  <div class="books" id="bookGrid"></div>
+ </section>
+</main>
+<footer class="footer">© 2026 RuangBaca — Perpustakaan Digital. Belajar dan bertumbuh bersama.</footer>
+<div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-label="Login">
+ <div class="panel"><button class="close" onclick="closeLogin()">×</button><h2 id="formTitle">Selamat Datang!</h2><p id="formDesc">Masuk untuk menikmati berbagai layanan RuangBaca.</p>
+  <div class="tabs"><button id="loginTab" class="active" onclick="setTab('login')">Login</button><button id="registerTab" onclick="setTab('register')">Daftar</button></div>
+  <form id="accountForm"><div class="field" id="nameField" style="display:none"><label>Nama lengkap</label><input id="name" placeholder="Nama kamu"></div><div class="field"><label>Email address</label><input id="email" type="email" placeholder="Email" required></div><div class="field"><label>Password</label><input id="password" type="password" placeholder="Password" required minlength="4"></div><button class="primary" type="submit" id="submitAccount">LOGIN SEKARANG</button></form>
+  <div style="text-align:center;color:var(--blue);margin:15px 0 5px">atau</div><button class="google" onclick="showToast('Login Google perlu dihubungkan ke layanan autentikasi.')">🌐 Login via Google</button>
+ </div>
+</div>
+<div class="modal" id="detailModal" role="dialog" aria-modal="true">
+ <div class="panel"><button class="close" onclick="closeDetail()">×</button><div class="detail-cover">📚</div><div class="eyebrow" id="detailCat"></div><h2 id="detailTitle"></h2><p id="detailAuthor"></p><p id="detailDesc"></p><button class="primary" onclick="showToast('Silakan login untuk membaca buku ini.')">Baca Sekarang</button></div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="js/script.js"></script>
+</body>
+</html>
