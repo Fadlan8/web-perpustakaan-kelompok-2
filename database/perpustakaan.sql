@@ -10,12 +10,13 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     kode_anggota VARCHAR(30) UNIQUE NOT NULL,   -- Misal: PTG-001 atau AGT-2026001
     nama_lengkap VARCHAR(150) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
+    username VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,             -- Simpan hash password_hash()
     role ENUM('admin', 'petugas', 'anggota') NOT NULL DEFAULT 'anggota',
     no_telepon VARCHAR(20) NULL,
     alamat TEXT NULL,
     status_akun ENUM('aktif', 'nonaktif', 'dibekukan') DEFAULT 'aktif',
+    last_login_at DATETIME NULL,
     foto_profil VARCHAR(255) NULL,
     deleted_at DATETIME NULL,                   -- Mendukung SoftDelete.php
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -116,16 +117,8 @@ CREATE TABLE settings (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- =========================================================================
--- 7. DATA AWAL (SEEDER) UNTUK PENGUJIAN
--- =========================================================================
-
--- Default password di bawah ini adalah hash dari: "password123"
-INSERT INTO users (kode_anggota, nama_lengkap, email, password, role, no_telepon, status_akun) VALUES
-('ADM-001', 'Administrator Perpus', 'admin@perpus.test', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', '081234567890', 'aktif'),
-('PTG-001', 'Budi Santoso (Petugas)', 'petugas@perpus.test', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'petugas', '081234567891', 'aktif'),
-('AGT-001', 'Siti Aminah', 'siti@mahasiswa.test', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'anggota', '081234567892', 'aktif'),
-('AGT-002', 'Rizky Pratama', 'rizky@mahasiswa.test', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'anggota', '081234567893', 'aktif');
+INSERT INTO users (kode_anggota, nama_lengkap, username, password, role, no_telepon, status_akun) VALUES
+('ADM-001', 'Administrator Perpus', 'admin@', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', '081234567890', 'aktif');
 
 INSERT INTO categories (kode_kategori, nama_kategori, deskripsi) VALUES
 ('KAT-TEK', 'Teknologi & Pemrograman', 'Buku ilmu komputer, rekayasa perangkat lunak, dan jaringan'),
@@ -142,7 +135,7 @@ INSERT INTO settings (setting_key, setting_value, keterangan) VALUES
 ('denda_per_hari', '2000', 'Tarif denda keterlambatan per hari (Rupiah)'),
 ('max_buku_pinjam', '3', 'Batas maksimal buku yang dapat dipinjam per anggota');
 
--- Contoh transaksi: 1 sedang dipinjam tepat waktu, 1 terlambat (kena denda)
+
 INSERT INTO transactions (kode_transaksi, user_id, item_id, petugas_id, jumlah, tanggal_pinjam, tanggal_jatuh_tempo, status, tarif_denda_per_hari) VALUES
 ('TRX-20261115-001', 3, 1, 2, 1, '2026-11-15', '2026-11-22', 'dipinjam', 2000.00),
 ('TRX-20261101-002', 4, 3, 2, 1, '2026-11-01', '2026-11-08', 'dipinjam', 2000.00);

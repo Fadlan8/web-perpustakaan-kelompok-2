@@ -27,12 +27,12 @@ function env(string $key, $default = null)
     return ($value === false || $value === null || $value === '') ? $default : $value;
 }
 
-define('APP_NAME', env('APP_NAME', 'Inventory System'));
+define('APP_NAME', env('APP_NAME', 'Perpustakaan System'));
 define('APP_ENV', env('APP_ENV', 'production'));
 define('APP_DEBUG', filter_var(env('APP_DEBUG', false), FILTER_VALIDATE_BOOLEAN));
 define('DB_HOST', env('DB_HOST', 'localhost'));
 define('DB_PORT', env('DB_PORT', '3306'));
-define('DB_NAME', env('DB_NAME', 'db_inventory'));
+define('DB_NAME', env('DB_NAME', 'db_perpustakaan'));
 define('DB_USER', env('DB_USER', 'root'));
 define('DB_PASS', env('DB_PASS', ''));
 define('BASEURL', rtrim(env('BASE_URL', 'http://localhost/pemrograman-web-b/pertemuan-4-inventaris-mvc/public'), '/'));

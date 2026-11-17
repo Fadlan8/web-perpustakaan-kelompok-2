@@ -7,30 +7,19 @@ class HomeController extends Controller
         $this->requireLogin();
     }
 
-    public function index(): void
+    public function index()
     {
-        $this->authorize('dashboard.view');
-        $item = $this->model('Item');
-        $transaction = $this->model('Transaction');
+        $itemModel = $this->model('Item');
+        $categoryModel = $this->model('Category');
 
-        //Ambil data untuk grafik transaksi harian selama 7 hari terakhir
-        $daily = $transaction->dailyTotals(7);
-        $this->view('dashboard/index', [
-            'title' => 'Dashboard',
-            'totalItems' => $item->totalItems(),
-            'totalCategories' => $this->model('Category')->count(),
-            'totalStock' => $item->totalStock(),
-            'totalAssetValue' => $item->totalAssetValue(),
-            'lowStockCount' => $item->lowStockCount(),
-            'lowStockItems' => $item->lowStockItems(),
-            'recentTransactions' => $transaction->recent(5),
-            'todayTransactions' => $transaction->todayCount(),
+        $data = [
+            'title'      => 'RuangBaca - Perpustakaan Digital',
+            'categories' => $categoryModel->getAll(), // sesuaikan dengan nama method di Category.php
+            'books'      => $itemModel->getAll()      // sesuaikan dengan nama method di Item.php
+        ];
 
-            //tambahkan data baru 
-            'chartLabels' => array_column($daily, 'label'),
-            'chartIn' => array_column($daily, 'in'),
-            'chartOut' => array_column($daily, 'out'),
-            'topItems' => $item->topStock(5),
-        ]);
+        // Arahkan ke view halaman depan/dashboard katalog
+        $this->view('dashboard/index', $data, false); // false agar tidak memakai header/footer Bootstrap lama
     }
 }
+

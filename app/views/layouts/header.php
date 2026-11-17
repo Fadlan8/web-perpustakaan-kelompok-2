@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="<?= BASEURL ?>">
-                <i class="bi bi-box-seam"></i> <?= APP_NAME ?>
+                <i class="bi bi-book-half text-primary"></i> <?= APP_NAME ?>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>

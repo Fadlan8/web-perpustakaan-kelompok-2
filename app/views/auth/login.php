@@ -4,7 +4,7 @@
 <div class="row justify-content-center" style="margin-top: 8vh;">
     <div class="col-md-5 col-lg-4">
         <div class="text-center mb-4">
-            <i class="bi bi-box-seam text-primary" style="font-size: 3rem;"></i>
+             <i class="bi bi-book-half text-primary" style="font-size: 2.5rem;"></i>
             <h3 class="fw-bold mt-2 mb-0"><?= APP_NAME ?></h3>
             <small class="text-muted">RUANGMP</small>
         </div>

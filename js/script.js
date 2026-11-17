@@ -32,3 +32,18 @@ document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if
 /* Toggle dark mode with Alt+D */
 document.addEventListener('keydown',e=>{if(e.altKey&&e.key.toLowerCase()==='d')document.body.classList.toggle('dark')});
 render();
+document.addEventListener('DOMContentLoaded', function () {
+  const btnDots = document.getElementById('btnDotsMenu');
+  const dropdown = document.getElementById('dotsDropdown');
+
+  if (btnDots && dropdown) {
+    btnDots.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', function () {
+      dropdown.classList.remove('show');
+    });
+  }
+});
