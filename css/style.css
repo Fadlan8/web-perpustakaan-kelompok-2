@@ -123,3 +123,13 @@ body.dark{--ink:#e8edf5;--muted:#aab6c5;--bg:#101722;--card:#182331;--line:#2a39
   background: #2563eb;
   color: #ffffff;
 }
+
+.book-stock.available{
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.book-stock.empty{
+  color: #dc2626;
+  font-weight: 600;
+}

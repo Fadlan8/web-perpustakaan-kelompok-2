@@ -8,7 +8,7 @@ class Category extends Model
     public function all(): array
     {
         return $this->db->query(
-            "SELECT c.*, (SELECT COUNT(*) FROM items i WHERE i.category_id = c.id AND i.deleted_at IS NULL) AS item_count FROM categories c ORDER BY c.name"
+            "SELECT c.*, (SELECT COUNT(*) FROM items i WHERE i.category_id = c.id AND i.deleted_at IS NULL) AS item_count FROM categories c ORDER BY c.nama_kategori ASC"
         )->fetchAll();
     }
     public function find(int $id, bool $withTrashed = false)

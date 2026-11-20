@@ -4,8 +4,7 @@ USE db_perpustakaan;
 
 -- =========================================================================
 -- 1. TABEL USERS (Anggota Perpustakaan & Petugas/Admin)
--- Selaras dengan app/models/User.php & app/views/users/index.php
--- =========================================================================
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     kode_anggota VARCHAR(30) UNIQUE NOT NULL,   -- Misal: PTG-001 atau AGT-2026001
@@ -25,8 +24,7 @@ CREATE TABLE users (
 
 -- =========================================================================
 -- 2. TABEL CATEGORIES (Kategori / Rak Buku)
--- Selaras dengan app/models/Category.php & app/views/categories/
--- =========================================================================
+
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     kode_kategori VARCHAR(20) UNIQUE NOT NULL,  -- Misal: RAK-A1, FIKSI, TEK
@@ -39,8 +37,7 @@ CREATE TABLE categories (
 
 -- =========================================================================
 -- 3. TABEL ITEMS (Koleksi Buku)
--- Selaras dengan app/models/Item.php & app/views/items/ (termasuk trash.php)
--- =========================================================================
+
 CREATE TABLE items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     category_id INT NOT NULL,
@@ -63,8 +60,7 @@ CREATE TABLE items (
 
 -- =========================================================================
 -- 4. TABEL TRANSACTIONS (Sirkulasi Peminjaman, Pengembalian & Denda)
--- Selaras dengan app/models/Transaction.php & app/views/transactions/
--- =========================================================================
+
 CREATE TABLE transactions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     kode_transaksi VARCHAR(30) UNIQUE NOT NULL, -- Misal: TRX-20261117-001
@@ -92,8 +88,7 @@ CREATE TABLE transactions (
 
 -- =========================================================================
 -- 5. TABEL ACTIVITY_LOGS (Catatan Aktivitas Sistem)
--- Selaras dengan app/models/ActivityLog.php, core/Logger.php & views/logs/
--- =========================================================================
+
 CREATE TABLE activity_logs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NULL,                           -- Bisa NULL jika aktivitas sistem / gagal login
@@ -108,7 +103,7 @@ CREATE TABLE activity_logs (
 
 -- =========================================================================
 -- 6. TABEL SETTINGS (Pengaturan Sirkulasi & Denda Dinamis)
--- =========================================================================
+
 CREATE TABLE settings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     setting_key VARCHAR(50) UNIQUE NOT NULL,

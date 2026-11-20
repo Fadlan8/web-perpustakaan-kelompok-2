@@ -14,12 +14,12 @@ class HomeController extends Controller
 
         $data = [
             'title'      => 'RuangBaca - Perpustakaan Digital',
-            'categories' => $categoryModel->getAll(), // sesuaikan dengan nama method di Category.php
-            'books'      => $itemModel->getAll()      // sesuaikan dengan nama method di Item.php
+            'categories' => $categoryModel->All(), // sesuaikan dengan nama method di Category.php
+            'books'      => $itemModel->All()      // sesuaikan dengan nama method di Item.php
         ];
 
         // Arahkan ke view halaman depan/dashboard katalog
-        $this->view('dashboard/index', $data, false); // false agar tidak memakai header/footer Bootstrap lama
+        $this->view('dashboard/index', $data); 
     }
 }
 
