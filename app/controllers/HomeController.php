@@ -9,17 +9,15 @@ class HomeController extends Controller
 
     public function index()
     {
-        $itemModel = $this->model('Item');
+        $itemModel     = $this->model('Item');
         $categoryModel = $this->model('Category');
 
         $data = [
-            'title'      => 'RuangBaca - Perpustakaan Digital',
-            'categories' => $categoryModel->All(), // sesuaikan dengan nama method di Category.php
-            'books'      => $itemModel->All()      // sesuaikan dengan nama method di Item.php
+            'title'      => 'RuangBaca — Perpustakaan Digital',
+            'categories' => $categoryModel->all(),
+            'books'      => $itemModel->all()
         ];
 
-        // Arahkan ke view halaman depan/dashboard katalog
-        $this->view('dashboard/index', $data); 
+        $this->view('dashboard/index', $data);
     }
 }
-

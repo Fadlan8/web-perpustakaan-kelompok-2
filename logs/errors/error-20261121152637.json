@@ -1,0 +1,7 @@
+{
+    "timestamp": "2026-11-21 15:26:37",
+    "message": "Activity log failed",
+    "context": {
+        "error": "SQLSTATE[42S22]: Column not found: 1054 Unknown column 'action' in 'field list'"
+    }
+}
