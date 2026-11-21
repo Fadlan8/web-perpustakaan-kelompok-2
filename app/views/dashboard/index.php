@@ -12,13 +12,12 @@
 </head>
 <body>
     <div class="user-shell">
-        <!-- Topbar Seragam dengan Admin -->
         <header class="user-topbar">
             <a class="user-brand" href="<?= BASEURL ?>/dashboard">
                 <div class="user-brand-logo">📖</div>
                 <div class="user-brand-text">
                     <b>RUANGMP</b>
-                    <small>Perpustakaan Digital</small>
+                    <small>Sistem Informasi Perpustakaan</small>
                 </div>
             </a>
 
@@ -26,7 +25,7 @@
                 <input id="searchInput" type="search" placeholder="Cari judul buku atau penulis..." aria-label="Cari buku">
             </form>
 
-            <!-- Pojok Kanan Atas: Icon + Nama User + Role + Logout -->
+            <!-- Icon + Nama User + Role + Logout -->
             <div class="user-tools">
                 <?php if (isset($_SESSION['user'])) : ?>
                     <div class="user-badge">
@@ -54,7 +53,7 @@
             </div>
         </header>
 
-        <!-- Hero Banner -->
+        <!-- Banner -->
         <section class="user-hero">
             <div>
                 <h1>Temukan bacaan favoritmu di RuangMP</h1>
@@ -134,7 +133,7 @@
         <footer class="user-footer">© 2026 RuangMP — Perpustakaan Digital. Belajar dan bertumbuh bersama.</footer>
     </div>
 
-    <!-- Modal Detail Buku -->
+    <!-- Detail Buku -->
     <div class="scrim" id="detailModal" role="dialog" aria-modal="true">
         <div class="modal">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">

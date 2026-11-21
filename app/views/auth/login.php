@@ -1,39 +1,75 @@
-<?php require ROOT_PATH . '/app/views/layouts/header.php'; ?>
-<?= csrf_field() ?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Login — <?= defined('APP_NAME') ? htmlspecialchars(APP_NAME) : 'RUANGMP' ?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= BASEURL ?>/../css/admin.css">
+    <link rel="stylesheet" href="<?= BASEURL ?>/../css/login.css">
+</head>
+<body>
+    <div class="login-wrap">
+        <div class="login-box">
+            <div class="login-brand">
+                <div class="login-logo">📖</div>
+                <div>
+                    <b><?= defined('APP_NAME') ? htmlspecialchars(APP_NAME) : 'RUANGMP' ?></b>
+                    <small>RUANGMP • Perpustakaan Digital</small>
+                </div>
+            </div>
 
-<div class="row justify-content-center" style="margin-top: 8vh;">
-    <div class="col-md-5 col-lg-4">
-        <div class="text-center mb-4">
-             <i class="bi bi-book-half text-primary" style="font-size: 2.5rem;"></i>
-            <h3 class="fw-bold mt-2 mb-0"><?= APP_NAME ?></h3>
-            <small class="text-muted">RUANGMP</small>
-        </div>
-        <div class="card border-0 shadow-sm">
-            <div class="card-body p-4">
-                <h5 class="mb-4 text-center">Login ke Akun Anda</h5>
-                <form method="post" action="<?= BASEURL ?>/auth/authenticate">
-                    <?= Security::csrfField() ?>
-                    <div class="mb-3">
-                        <label class="form-label">Username</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-person"></i></span>
-                            <input type="text" name="username" class="form-control" placeholder="Masukkan username" required autofocus>
-                        </div>
+            <h1 class="login-title">Login ke Akun Anda</h1>
+            <p class="login-sub">Masuk menggunakan akun Admin atau Anggota.</p>
+
+            <?php
+            $flashMsg = $flash ?? ($_SESSION['flash'] ?? null);
+            if (isset($_SESSION['flash'])) {
+                unset($_SESSION['flash']);
+            }
+            if ($flashMsg) :
+            ?>
+                <div class="alert-box alert-<?= htmlspecialchars($flashMsg['type'] ?? 'error') ?>">
+                    <?= htmlspecialchars($flashMsg['message'] ?? '') ?>
+                </div>
+            <?php endif; ?>
+
+            <form method="post" action="<?= BASEURL ?>/auth/authenticate">
+                <?= Security::csrfField() ?>
+
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Masukkan username" required autofocus autocomplete="username">
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <div class="pass-wrap">
+                        <input type="password" id="password" name="password" placeholder="Masukkan password" required autocomplete="current-password">
+                        <button type="button" class="pass-toggle" id="togglePass" aria-label="Tampilkan password">👁</button>
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label">Password</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                            <input type="password" name="password" class="form-control" placeholder="Masukkan password" required>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">
-                        <i class="bi bi-box-arrow-in-right"></i> Masuk
-                    </button>
-                </form>
+                </div>
+
+                <button type="submit" class="btn btn-login">Masuk →</button>
+            </form>
+
+            <div class="login-foot">
+                © 2026 RUANGMP • Sistem Informasi Perpustakaan
             </div>
         </div>
     </div>
-</div>
 
-<?php require ROOT_PATH . '/app/views/layouts/footer.php'; ?>
+    <script>
+        const togglePass = document.getElementById('togglePass');
+        const passInput = document.getElementById('password');
+        if (togglePass && passInput) {
+            togglePass.addEventListener('click', () => {
+                const isHidden = passInput.type === 'password';
+                passInput.type = isHidden ? 'text' : 'password';
+                togglePass.textContent = isHidden ? '🙈' : '👁';
+            });
+        }
+    </script>
+</body>
+</html>
